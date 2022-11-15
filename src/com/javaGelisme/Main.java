@@ -1,9 +1,14 @@
 package com.javaGelisme;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        Marka marka = new Marka(1, "Samsung");
+        for (Marka marka: Marka.getSortedMarka()) {
+            System.out.println(marka.name);
+        }
+
 
     }
 }
