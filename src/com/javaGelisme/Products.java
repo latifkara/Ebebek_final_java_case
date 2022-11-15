@@ -6,13 +6,7 @@ public abstract class Products {
     private int amountOfStock;
     private String productName;
     private int id;
-    private int[] memoryInformation = {64, 128};
-    private String[] color = {"Siyah", "Kırmızı", "Mavi"};
     public Marka marka;
-    private final double screenSize = 6.1;
-    private final int batteryPower = 4000;
-    private final int ram = 6;
-
 
     public Products(int unitPrice, int discountRate, int amountOfStock, String productName, int id) {
         this.unitPrice = unitPrice;

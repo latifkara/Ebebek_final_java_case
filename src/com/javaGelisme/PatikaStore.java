@@ -21,7 +21,6 @@ public class PatikaStore {
         for (int i = 0; i < markaName.length; i++) {
             markas[i] = new Marka((i+1), markaName[i]);
         }
-
     }
 
     public void run(){
