@@ -1,15 +1,13 @@
 package com.javaGelisme;
-
-import javafx.print.Collation;
-
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Marka {
     private int id;
     private String name;
     private static Marka[] markas;
     private static String[] markaName;
+
 
     public Marka(int id, String name) {
         this.id = id;
@@ -18,10 +16,11 @@ public class Marka {
     }
 
 
-    public static Marka[] getSortedMarka(){
-        PatikaStore patikaStore = new PatikaStore();
-        Arrays.sort(patikaStore.getMarkas(), Collections.reverseOrder());
-        return patikaStore.getMarkas();
+    public static List<Marka> getSortedMarka(){
+        PatikaStore.getMarkaList().sort((obj1, obj2)
+                                        -> obj1.getName().compareTo(obj2.getName())
+        );
+        return PatikaStore.getMarkaList();
     }
 
     public int getId() {

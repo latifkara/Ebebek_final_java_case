@@ -1,6 +1,9 @@
 package com.javaGelisme;
 
-public abstract class Products {
+import java.util.Scanner;
+
+public class Products {
+    Scanner scan = new Scanner(System.in);
     private int unitPrice;
     private int DiscountRate;
     private int amountOfStock;
@@ -8,13 +11,16 @@ public abstract class Products {
     private int id;
     public Marka marka;
 
+
     public Products(int unitPrice, int discountRate, int amountOfStock, String productName, int id) {
         this.unitPrice = unitPrice;
-        DiscountRate = discountRate;
+        this.DiscountRate = discountRate;
         this.amountOfStock = amountOfStock;
         this.productName = productName;
         this.id = id;
     }
+
+
 
     public int getUnitPrice() {
         return unitPrice;
