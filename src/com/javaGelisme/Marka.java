@@ -16,12 +16,7 @@ public class Marka {
     }
 
 
-    public static List<Marka> getSortedMarka(){
-        PatikaStore.getMarkaList().sort((obj1, obj2)
-                                        -> obj1.getName().compareTo(obj2.getName())
-        );
-        return PatikaStore.getMarkaList();
-    }
+
 
     public int getId() {
         return id;

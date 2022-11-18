@@ -9,18 +9,22 @@ public class Products {
     private int amountOfStock;
     private String productName;
     private int id;
-    public Marka marka;
+    private Marka marka;
 
 
-    public Products(int unitPrice, int discountRate, int amountOfStock, String productName, int id) {
+    public Products(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
         this.unitPrice = unitPrice;
         this.DiscountRate = discountRate;
         this.amountOfStock = amountOfStock;
         this.productName = productName;
         this.id = id;
+        this.marka = marka;
     }
 
 
+    public void printInfo(){
+        System.out.println("id : " + this.getId() + "\tName : " + this.getProductName() + "\tPrice : " + this.getUnitPrice());
+    }
 
     public int getUnitPrice() {
         return unitPrice;
@@ -60,5 +64,13 @@ public class Products {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Marka getMarka() {
+        return marka;
+    }
+
+    public void setMarka(Marka marka) {
+        this.marka = marka;
     }
 }

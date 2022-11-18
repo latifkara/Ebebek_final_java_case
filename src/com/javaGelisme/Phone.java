@@ -7,7 +7,7 @@ public class Phone extends Products{
     private final int batteryPower = 4000;
     private final int ram = 6;
 
-    public Phone(int unitPrice, int discountRate, int amountOfStock, String productName, int id) {
-        super(unitPrice, discountRate, amountOfStock, productName, id);
+    public Phone(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
+        super(unitPrice, discountRate, amountOfStock, productName, id, marka);
     }
 }
