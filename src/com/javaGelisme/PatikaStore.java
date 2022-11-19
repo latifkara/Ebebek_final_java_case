@@ -8,7 +8,7 @@ public class PatikaStore {
     private static TreeSet<Marka> markaList = new TreeSet<>((name1, name2) -> name1.getName().compareTo(name2.getName()));
     private static String[] markaNameList = {"Samsung", "Lenovo", "Apple", "Huawei", "Casper", "Asus", "HP", "Xiaomi", "Monster"};
     private List<Products> productsList = new ArrayList<>();
-    private HashMap<String, Object> hashMap;
+    private HashMap<String, String> hashMap;
     private Products productPhone;
     private Products productNotebook;
     private Products productOther;
@@ -155,13 +155,17 @@ public class PatikaStore {
 
     }
     public void printProducts(){
-        Display.displayAllProduct();
-
+        Display.displayAllProduct(this.getHashMap());
         for (Products products : this.productsList){
-            System.out.format("%d %12s %10s %12s %12d %10d %10d\n", products.getId(), products.getProductType(), products.getMarka().getName(),
+            System.out.format("%d %12s %10s %12s %12d %10d %10d", products.getId(), products.getProductType(), products.getMarka().getName(),
                                 products.getProductName(), products.getUnitPrice(), products.getDiscountRate(),
                                 products.getDiscountRate(), products.getAmountOfStock());
+            products.getHashMap().forEach((key, value) -> {
+                System.out.format(" %10s ", value);
+            });
+            System.out.println();
         }
+
     }
 
 
@@ -189,7 +193,7 @@ public class PatikaStore {
         this.productOther = productOther;
     }
 
-    public HashMap<String, Object> getHashMap() {
+    public HashMap<String, String> getHashMap() {
         return hashMap;
     }
 

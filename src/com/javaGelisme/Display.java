@@ -1,5 +1,7 @@
 package com.javaGelisme;
 
+import java.util.HashMap;
+
 public class Display {
 
     public static void displayOptions(){
@@ -19,9 +21,15 @@ public class Display {
         System.out.println("4- Çıkş Yap");
     }
     
-    public static void displayAllProduct(){
+    public static void displayAllProduct(HashMap hashMap){
         //System.out.println("Id" + "\tMarka" + "\tProduct name" + "Price" + "\tRate" + "\tStock");
-        System.out.format("%s | %8s | %6s | %8s | %8s | %8s | %8s\n", "ID", "Product type","Marka", "Product name", "Price", "Rate", "Stock");
-
+        System.out.format("%s | %8s | %6s | %8s | %8s | %8s | %8s ", "ID", "Product type","Marka", "Product name", "Price", "Rate", "Stock");
+        hashMap.forEach((key, value) -> {
+            System.out.println(key);
+            if (!hashMap.containsKey(key)){
+                System.out.format("| %8s |" , key);
+            }
+        });
+        System.out.println();
     }
 }

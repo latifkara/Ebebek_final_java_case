@@ -1,8 +1,5 @@
 package com.javaGelisme;
 
-import com.javaGelisme.Marka;
-import com.javaGelisme.Products;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +10,7 @@ public class OtherProject extends Products {
         this.hashMap = hashMap;
     }
 
+    @Override
     public HashMap<String, String> getHashMap() {
         return hashMap;
     }

@@ -1,5 +1,6 @@
 package com.javaGelisme;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Products {
@@ -11,6 +12,7 @@ public class Products {
     private String productType;
     private int id;
     private Marka marka;
+    private  HashMap<String, String> hashMap = new HashMap<>();
 
 
     public Products(int unitPrice, int discountRate, int amountOfStock, String productName, String productType, int id, Marka marka) {
@@ -82,5 +84,9 @@ public class Products {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    public  HashMap<String, String> getHashMap() {
+        return hashMap;
     }
 }
