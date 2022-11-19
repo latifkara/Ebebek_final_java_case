@@ -8,8 +8,10 @@ public class PatikaStore {
     private static TreeSet<Marka> markaList = new TreeSet<>((name1, name2) -> name1.getName().compareTo(name2.getName()));
     private static String[] markaNameList = {"Samsung", "Lenovo", "Apple", "Huawei", "Casper", "Asus", "HP", "Xiaomi", "Monster"};
     private List<Products> productsList = new ArrayList<>();
+    private HashMap<String, Object> hashMap;
     private Products productPhone;
     private Products productNotebook;
+    private Products productOther;
 
 
     public static TreeSet<Marka> getMarkaList() {
@@ -85,6 +87,12 @@ public class PatikaStore {
                     this.addProduct(++id, "Notebook", productNotebook);
                     break;
                 case 3:
+                    System.out.println("Diğer Ürünleri ekleyiniz");
+                    System.out.print("Ürün türü ekleyiniz : ");
+                    String productType = scan.next();
+                    this.addProduct(++id, productType, productOther);
+                    break;
+                case 4:
                     isExit = false;
                     break;
                 default:
@@ -111,18 +119,41 @@ public class PatikaStore {
         int rate = scan.nextInt();
         System.out.print("Stok miktarı giriniz : ");
         int stock = scan.nextInt();
+
         for (Marka marka:this.markaList) {
             if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Phone")){
                 this.setProductPhone(new Phone(unitePrice, rate, stock, productName, productType, id, marka));
                 this.productsList.add(this.getProductPhone());
+                System.out.println("Ürün eklendi");
             }else if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Notebook")){
                 this.setProductNotebook(new Notebook(unitePrice, rate, stock, productName, productType, id, marka));
                 this.productsList.add(this.getProductNotebook());
                 System.out.println("Ürün eklendi");
+            }else if (marka.getName().equalsIgnoreCase(markaName)){
+                this.addSkillForOtherProducts();
+                this.setProductOther(new OtherProject(unitePrice, rate, stock, productName, productType, id, marka, this.getHashMap()));
+                this.productsList.add(this.getProductOther());
+                System.out.println("Ürün eklendi");
             }
         }
     }
+    public void addSkillForOtherProducts(){
+        hashMap = new HashMap<>();
+        while (true) {
+            System.out.print("Yeni bir özellik eklemek ister misiniz: <E>vet veya <H>ayır --> ");
+            String letter = scan.next();
+            if (letter.equalsIgnoreCase("e")){
+                System.out.print("Ürün özelliğini giriniz : ");
+                String key = scan.next();
+                System.out.print("Özellik değeri giriniz : ");
+                String value = scan.next();
+                hashMap.put(key, value);
+            }else {
+                break;
+            }
+        }
 
+    }
     public void printProducts(){
         Display.displayAllProduct();
 
@@ -150,6 +181,16 @@ public class PatikaStore {
         this.productNotebook = productNotebook;
     }
 
+    public Products getProductOther() {
+        return productOther;
+    }
 
+    public void setProductOther(Products productOther) {
+        this.productOther = productOther;
+    }
+
+    public HashMap<String, Object> getHashMap() {
+        return hashMap;
+    }
 
 }
