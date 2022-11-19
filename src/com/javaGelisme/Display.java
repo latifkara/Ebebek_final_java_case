@@ -20,7 +20,7 @@ public class Display {
     
     public static void displayAllProduct(){
         //System.out.println("Id" + "\tMarka" + "\tProduct name" + "Price" + "\tRate" + "\tStock");
-        System.out.format("%s %8s %8s %8s %8s %8s\n", "ID", "Marka", "Product name", "Price", "Rate", "Stock");
+        System.out.format("%s | %8s | %8s | %8s | %8s | %8s | %8s\n", "ID", "Product type","Marka", "Product name", "Price", "Rate", "Stock");
 
     }
 }

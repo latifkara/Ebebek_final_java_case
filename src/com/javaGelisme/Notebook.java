@@ -5,7 +5,7 @@ public class Notebook extends Products{
     private final int storage = 512;
     private final int screenSize = 14;
 
-    public Notebook(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
-        super(unitPrice, discountRate, amountOfStock, productName, id, marka);
+    public Notebook(int unitPrice, int discountRate, int amountOfStock, String productName,String productType, int id, Marka marka) {
+        super(unitPrice, discountRate, amountOfStock, productName, productType, id, marka);
     }
 }

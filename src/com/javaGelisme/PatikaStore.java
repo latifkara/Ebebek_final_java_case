@@ -1,32 +1,31 @@
 package com.javaGelisme;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PatikaStore {
-    private Scanner scan = new Scanner(System.in);
-    private static List<Marka> markaList = new ArrayList<>();
-    private static String[] markaNameList = {"Samsung", "Lenovo", "Apple", "Huawei", "Casper", "Asus", "HP", "Xiaomi", "Monster"};
-    private Products products;
-    private List<Products> productsList = new ArrayList<>();
     int id = 0;
+    private Scanner scan = new Scanner(System.in);
+    private static TreeSet<Marka> markaList = new TreeSet<>((name1, name2) -> name1.getName().compareTo(name2.getName()));
+    private static String[] markaNameList = {"Samsung", "Lenovo", "Apple", "Huawei", "Casper", "Asus", "HP", "Xiaomi", "Monster"};
+    private List<Products> productsList = new ArrayList<>();
+    private Products productPhone;
+    private Products productNotebook;
 
 
-    public static List<Marka> getMarkaList() {
+    public static TreeSet<Marka> getMarkaList() {
         return markaList;
     }
-    public static List<Marka> getSortedMarka(){
-        getMarkaList().sort((obj1, obj2)
-                -> obj1.getName().compareTo(obj2.getName())
-        );
-        return getMarkaList();
-    }
+
     static {
+        Arrays.sort(markaNameList);
         for (int i = 0; i < markaNameList.length; i++) {
             markaList.add(new Marka((i+1), markaNameList[i]));
         }
+        for (Marka marka: markaList){
+            System.out.println("ID : "+ marka.getId() + "\tName : " + marka.getName());
+        }
     }
+
     public void run(){
         this.selectEvent();
     }
@@ -78,11 +77,12 @@ public class PatikaStore {
             switch (select) {
                 case 1:
                     System.out.println("Telefon ürünü seçtiniz");
-                    this.addProduct(++id, products);
+                    this.addProduct(++id, "Phone",productPhone);
                     //this.getProducts().printInfo();
                     break;
                 case 2:
                     System.out.println("Notbook ürünü seçtiniz");
+                    this.addProduct(++id, "Notebook", productNotebook);
                     break;
                 case 3:
                     isExit = false;
@@ -100,7 +100,7 @@ public class PatikaStore {
         return productsList;
     }
 
-    public void addProduct(int id, Products products){
+    public void addProduct(int id,String productType, Products products){
         System.out.print("Marka ismi Giriniz : ");
         String markaName = scan.next();
         System.out.print("Ürün adı giriniz : ");
@@ -112,30 +112,44 @@ public class PatikaStore {
         System.out.print("Stok miktarı giriniz : ");
         int stock = scan.nextInt();
         for (Marka marka:this.markaList) {
-            if (marka.getName().equalsIgnoreCase(markaName)){
-                this.setProducts(new Phone(unitePrice, rate, stock, productName, id, marka));
-                this.productsList.add(this.getProducts());
+            if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Phone")){
+                this.setProductPhone(new Phone(unitePrice, rate, stock, productName, productType, id, marka));
+                this.productsList.add(this.getProductPhone());
+            }else if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Notebook")){
+                this.setProductNotebook(new Notebook(unitePrice, rate, stock, productName, productType, id, marka));
+                this.productsList.add(this.getProductNotebook());
+                System.out.println("Ürün eklendi");
             }
         }
     }
 
     public void printProducts(){
         Display.displayAllProduct();
+
         for (Products products : this.productsList){
-            System.out.format("%d %10s %8s %10d %8d %8d\n", products.getId(), products.getMarka().getName(),
+            System.out.format("%d %12s %10s %12s %12d %10d %10d\n", products.getId(), products.getProductType(), products.getMarka().getName(),
                                 products.getProductName(), products.getUnitPrice(), products.getDiscountRate(),
                                 products.getDiscountRate(), products.getAmountOfStock());
         }
     }
 
 
-    public Products getProducts() {
-        return products;
+    public Products getProductPhone() {
+        return productPhone;
     }
 
-    public void setProducts(Products products) {
-        this.products = products;
+    public void setProductPhone(Products productPhone) {
+        this.productPhone = productPhone;
     }
+
+    public Products getProductNotebook() {
+        return productNotebook;
+    }
+
+    public void setProductNotebook(Products productNotebook) {
+        this.productNotebook = productNotebook;
+    }
+
 
 
 }

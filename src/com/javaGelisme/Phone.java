@@ -7,9 +7,19 @@ public class Phone extends Products{
     private final int batteryPower = 4000;
     private final int ram = 6;
 
-    public Phone(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
-        super(unitPrice, discountRate, amountOfStock, productName, id, marka);
+    public Phone(int unitPrice, int discountRate, int amountOfStock, String productName,String productType, int id, Marka marka) {
+        super(unitPrice, discountRate, amountOfStock, productName, productType, id, marka);
     }
 
+    public double getScreenSize() {
+        return screenSize;
+    }
 
+    public int getBatteryPower() {
+        return batteryPower;
+    }
+
+    public int getRam() {
+        return ram;
+    }
 }

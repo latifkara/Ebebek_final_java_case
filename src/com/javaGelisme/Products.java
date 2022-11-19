@@ -8,15 +8,17 @@ public class Products {
     private int DiscountRate;
     private int amountOfStock;
     private String productName;
+    private String productType;
     private int id;
     private Marka marka;
 
 
-    public Products(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
+    public Products(int unitPrice, int discountRate, int amountOfStock, String productName, String productType, int id, Marka marka) {
         this.unitPrice = unitPrice;
         this.DiscountRate = discountRate;
         this.amountOfStock = amountOfStock;
         this.productName = productName;
+        this.productType = productType;
         this.id = id;
         this.marka = marka;
     }
@@ -72,5 +74,13 @@ public class Products {
 
     public void setMarka(Marka marka) {
         this.marka = marka;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 }
