@@ -23,7 +23,6 @@ public class PatikaStore {
         return getMarkaList();
     }
     static {
-        System.out.println(getSortedMarka());
         for (int i = 0; i < markaNameList.length; i++) {
             markaList.add(new Marka((i+1), markaNameList[i]));
         }
@@ -79,7 +78,7 @@ public class PatikaStore {
             switch (select) {
                 case 1:
                     System.out.println("Telefon ürünü seçtiniz");
-                    this.addPhoneProduct(++id, products);
+                    this.addProduct(++id, products);
                     //this.getProducts().printInfo();
                     break;
                 case 2:
@@ -101,7 +100,7 @@ public class PatikaStore {
         return productsList;
     }
 
-    public void addPhoneProduct(int id, Products products){
+    public void addProduct(int id, Products products){
         System.out.print("Marka ismi Giriniz : ");
         String markaName = scan.next();
         System.out.print("Ürün adı giriniz : ");
@@ -116,7 +115,6 @@ public class PatikaStore {
             if (marka.getName().equalsIgnoreCase(markaName)){
                 this.setProducts(new Phone(unitePrice, rate, stock, productName, id, marka));
                 this.productsList.add(this.getProducts());
-                this.printProducts();
             }
         }
     }
@@ -124,7 +122,9 @@ public class PatikaStore {
     public void printProducts(){
         Display.displayAllProduct();
         for (Products products : this.productsList){
-            System.out.format("%s\n", products.getProductName());
+            System.out.format("%d %10s %8s %10d %8d %8d\n", products.getId(), products.getMarka().getName(),
+                                products.getProductName(), products.getUnitPrice(), products.getDiscountRate(),
+                                products.getDiscountRate(), products.getAmountOfStock());
         }
     }
 

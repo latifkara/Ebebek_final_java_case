@@ -10,4 +10,6 @@ public class Phone extends Products{
     public Phone(int unitPrice, int discountRate, int amountOfStock, String productName, int id, Marka marka) {
         super(unitPrice, discountRate, amountOfStock, productName, id, marka);
     }
+
+
 }
