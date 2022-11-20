@@ -24,7 +24,7 @@ public class Products {
 
     public Products(int unitPrice, int discountRate, int amountOfStock, String productName,
                     String productType, int id, Marka marka, String memoryInformation, String color,
-                    String screenSize, String batteryPower, String ram, String storage) {
+                    String screenSize, String batteryPower, String ram, String storage, HashMap hashMap) {
         this.unitPrice = unitPrice;
         this.DiscountRate = discountRate;
         this.amountOfStock = amountOfStock;
@@ -38,18 +38,9 @@ public class Products {
         this.batteryPower = batteryPower;
         this.ram = ram;
         this.storage = storage;
-    }
-    public Products(int unitPrice, int discountRate, int amountOfStock, String productName,
-                    String productType, int id, Marka marka, HashMap hashMap){
-        this.unitPrice = unitPrice;
-        this.DiscountRate = discountRate;
-        this.amountOfStock = amountOfStock;
-        this.productName = productName;
-        this.productType = productType;
-        this.id = id;
-        this.marka = marka;
         this.hashMap = hashMap;
     }
+
 
 
     public void printInfo(){

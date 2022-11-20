@@ -20,9 +20,10 @@ public class PatikaStore {
         for (int i = 0; i < markaNameList.length; i++) {
             markaList.add(new Marka((i+1), markaNameList[i]));
         }
-        for (Marka marka: markaList){
-            System.out.println("ID : "+ marka.getId() + "\tName : " + marka.getName());
-        }
+        System.out.println("------------------------Patika store'e Hoşgeldiniz------------------------");
+        System.out.println();
+        System.out.println("                Lüften aşağıdaki seçeneklerden birini seçiniz");
+        System.out.println();
     }
 
     public void run(){
@@ -55,6 +56,7 @@ public class PatikaStore {
             }
         }
     }
+
     public Boolean deleteProduct(){
         System.out.print("Silmek istedğiniz ürün numarası giriniz : ");
         int removeItem = scan.nextInt();
@@ -140,7 +142,6 @@ public class PatikaStore {
                 System.out.print("Özellik değeri giriniz : ");
                 String value = scan.next();
                 hashMap.put(key, value);
-                System.out.println();
             }else {
                 break;
             }
@@ -157,9 +158,11 @@ public class PatikaStore {
                                 products.getAmountOfStock(), products.getMemoryInformation(), products.getRam(),
                                 products.getScreenSize(), products.getStorage(), products.getColor(), products.getBatteryPower());
 
-            products.getHashMap().forEach((key, value) -> {
-                System.out.format(" %10s ", value);
-            });
+           if (products.getHashMap() != null){
+               products.getHashMap().forEach((key, value) -> {
+                   System.out.format(" %14s ", value);
+               });
+           }
             System.out.println();
         }
 
