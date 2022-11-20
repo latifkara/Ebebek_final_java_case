@@ -22,14 +22,15 @@ public class Display {
     }
     
     public static void displayAllProduct(HashMap hashMap){
-        //System.out.println("Id" + "\tMarka" + "\tProduct name" + "Price" + "\tRate" + "\tStock");
-        System.out.format("%s | %8s | %6s | %8s | %8s | %8s | %8s ", "ID", "Product type","Marka", "Product name", "Price", "Rate", "Stock");
-        hashMap.forEach((key, value) -> {
-            System.out.println(key);
-            if (!hashMap.containsKey(key)){
-                System.out.format("| %8s |" , key);
-            }
-        });
+        System.out.format("%s | %8s | %6s | %8s | %8s | %8s | %8s | %6s | %12s | %8s | %8s | %12s | %8s",
+                "ID", "Product type","Marka", "Product name", "Price", "Rate", "Stock","hafıza bilgisi",
+                "RAM storage", "Screen size", "Storage", "color", "Battery Power");
+        if (hashMap != null) {
+            hashMap.forEach((key, value) -> {
+                    System.out.format("| %10s |", key);
+            });
+        }
+
         System.out.println();
     }
 }

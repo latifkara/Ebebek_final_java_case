@@ -14,9 +14,6 @@ public class PatikaStore {
     private Products productOther;
 
 
-    public static TreeSet<Marka> getMarkaList() {
-        return markaList;
-    }
 
     static {
         Arrays.sort(markaNameList);
@@ -101,12 +98,7 @@ public class PatikaStore {
         }
         return true;
     }
-    public  List<Products> getSortedProduct(){
-        this.productsList.sort((obj1, obj2)
-                -> obj1.getProductName().compareTo(obj2.getProductName()));
 
-        return productsList;
-    }
 
     public void addProduct(int id,String productType, Products products){
         System.out.print("Marka ismi Giriniz : ");
@@ -148,6 +140,7 @@ public class PatikaStore {
                 System.out.print("Özellik değeri giriniz : ");
                 String value = scan.next();
                 hashMap.put(key, value);
+                System.out.println();
             }else {
                 break;
             }
@@ -155,11 +148,15 @@ public class PatikaStore {
 
     }
     public void printProducts(){
+        List<Products> newList = this.getSortedProductsList();
         Display.displayAllProduct(this.getHashMap());
-        for (Products products : this.productsList){
-            System.out.format("%d %12s %10s %12s %12d %10d %10d", products.getId(), products.getProductType(), products.getMarka().getName(),
+        for (Products products : newList){
+            System.out.format("%d %12s %10s %12s %12d %10d %8d %16s %14s %12s %12s %12s %12s",
+                                products.getId(), products.getProductType(), products.getMarka().getName(),
                                 products.getProductName(), products.getUnitPrice(), products.getDiscountRate(),
-                                products.getDiscountRate(), products.getAmountOfStock());
+                                products.getAmountOfStock(), products.getMemoryInformation(), products.getRam(),
+                                products.getScreenSize(), products.getStorage(), products.getColor(), products.getBatteryPower());
+
             products.getHashMap().forEach((key, value) -> {
                 System.out.format(" %10s ", value);
             });
@@ -167,6 +164,15 @@ public class PatikaStore {
         }
 
     }
+    public List<Products> getSortedProductsList(){
+        this.productsList.sort((obj1, obj2) -> obj1.getMarka().getName().compareTo(obj2.getMarka().getName()));
+        for (int i = 0; i < this.productsList.size(); i++) {
+            this.productsList.get(i).setId((i + 1));
+        }
+        return this.productsList;
+    }
+
+
 
 
     public Products getProductPhone() {
