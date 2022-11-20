@@ -23,7 +23,7 @@ Patika store project performs the operations of saving, deleting and sorting the
 
 ## Include Tests
 The test process on the project was done as follows.
-<img src = "image/menu_1.png" alt="uml diagram" align="middle">
-<img src = "image/menu_2.png" alt="uml diagram" align="middle">
-<img src = "image/menu_3.png" alt="uml diagram" align="middle">
+<img src = "image/menu_1.png" alt="uml diagram" align="middle"><br/>
+<img src = "image/menu_2.png" alt="uml diagram" align="middle"><br/>
+<img src = "image/menu_3.png" alt="uml diagram" align="middle"><br/>
 <img src = "image/menu_4.png" alt="uml diagram" align="middle">
