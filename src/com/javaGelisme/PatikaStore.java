@@ -147,8 +147,9 @@ public class PatikaStore {
     public void printProducts(){
         List<Products> newList = this.getSortedProductsList();
         Display.displayAllProduct(this.getHashMap());
+        System.out.println("------------------Ürün Listesi-------------------");
         for (Products products : newList){
-            Double updatePrice = products.getUnitPrice() * (products.getDiscountRate() / 100);
+            Double updatePrice = products.getUnitPrice() - products.getUnitPrice() * (products.getDiscountRate() / 100);
             System.out.format("%d %12s %10s %12s %12.0f %10.0f %8d %16s %14s %12s %12s %12s %12s",
                                 products.getId(), products.getProductType(), products.getMarka().getName(),
                                 products.getProductName(), updatePrice, products.getDiscountRate(),
