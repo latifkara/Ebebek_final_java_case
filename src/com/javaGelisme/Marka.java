@@ -5,8 +5,6 @@ import java.util.List;
 public class Marka {
     private int id;
     private String name;
-    private static Marka[] markas;
-    private static String[] markaName;
 
 
     public Marka(int id, String name) {
@@ -14,8 +12,6 @@ public class Marka {
         this.name = name;
 
     }
-
-
 
 
     public int getId() {

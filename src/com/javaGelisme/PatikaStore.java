@@ -9,9 +9,7 @@ public class PatikaStore {
     private static String[] markaNameList = {"Samsung", "Lenovo", "Apple", "Huawei", "Casper", "Asus", "HP", "Xiaomi", "Monster"};
     private List<Products> productsList = new ArrayList<>();
     private HashMap<String, String> hashMap;
-    private Products productPhone;
-    private Products productNotebook;
-    private Products productOther;
+    private Products products;
 
 
 
@@ -57,7 +55,7 @@ public class PatikaStore {
         }
     }
 
-    public Boolean deleteProduct(){
+    public void deleteProduct(){
         System.out.print("Silmek istedğiniz ürün numarası giriniz : ");
         int removeItem = scan.nextInt();
         this.productsList.remove(--removeItem);
@@ -65,10 +63,9 @@ public class PatikaStore {
             this.productsList.get(i).setId(++removeItem);
         }
         id--;
-        return false;
     }
 
-    public Boolean addProduct()
+    public void addProduct()
     {
         boolean isExit = true;
         while (isExit) {
@@ -78,18 +75,18 @@ public class PatikaStore {
             switch (select) {
                 case 1:
                     System.out.println("Telefon ürünü seçtiniz");
-                    this.addProduct(++id, "Phone",productPhone);
+                    this.addProduct(++id, "Phone",products);
                     //this.getProducts().printInfo();
                     break;
                 case 2:
                     System.out.println("Notbook ürünü seçtiniz");
-                    this.addProduct(++id, "Notebook", productNotebook);
+                    this.addProduct(++id, "Notebook", products);
                     break;
                 case 3:
                     System.out.println("Diğer Ürünleri ekleyiniz");
                     System.out.print("Ürün türü ekleyiniz : ");
                     String productType = scan.next();
-                    this.addProduct(++id, productType, productOther);
+                    this.addProduct(++id, productType, products);
                     break;
                 case 4:
                     isExit = false;
@@ -98,7 +95,6 @@ public class PatikaStore {
                     System.out.println("Yanlış seçim yaptınız");
             }
         }
-        return true;
     }
 
 
@@ -108,25 +104,25 @@ public class PatikaStore {
         System.out.print("Ürün adı giriniz : ");
         String productName = scan.next();
         System.out.print("Birim fiyatını giriniz : ");
-        int unitePrice = scan.nextInt();
+        Double unitePrice = scan.nextDouble();
         System.out.print("Indirim oranı giriniz : ");
-        int rate = scan.nextInt();
+        Double rate = scan.nextDouble();
         System.out.print("Stok miktarı giriniz : ");
         int stock = scan.nextInt();
 
         for (Marka marka:this.markaList) {
             if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Phone")){
-                this.setProductPhone(new Phone(unitePrice, rate, stock, productName, productType, id, marka));
-                this.productsList.add(this.getProductPhone());
+                this.setProducts(new Phone(unitePrice, rate, stock, productName, productType, id, marka));
+                this.productsList.add(this.getProducts());
                 System.out.println("Ürün eklendi");
             }else if (marka.getName().equalsIgnoreCase(markaName) && productType.equalsIgnoreCase("Notebook")){
-                this.setProductNotebook(new Notebook(unitePrice, rate, stock, productName, productType, id, marka));
-                this.productsList.add(this.getProductNotebook());
+                this.setProducts(new Notebook(unitePrice, rate, stock, productName, productType, id, marka));
+                this.productsList.add(this.getProducts());
                 System.out.println("Ürün eklendi");
             }else if (marka.getName().equalsIgnoreCase(markaName)){
                 this.addSkillForOtherProducts();
-                this.setProductOther(new OtherProject(unitePrice, rate, stock, productName, productType, id, marka, this.getHashMap()));
-                this.productsList.add(this.getProductOther());
+                this.setProducts(new OtherProduct(unitePrice, rate, stock, productName, productType, id, marka, this.getHashMap()));
+                this.productsList.add(this.getProducts());
                 System.out.println("Ürün eklendi");
             }
         }
@@ -152,9 +148,10 @@ public class PatikaStore {
         List<Products> newList = this.getSortedProductsList();
         Display.displayAllProduct(this.getHashMap());
         for (Products products : newList){
-            System.out.format("%d %12s %10s %12s %12d %10d %8d %16s %14s %12s %12s %12s %12s",
+            Double updatePrice = products.getUnitPrice() * (products.getDiscountRate() / 100);
+            System.out.format("%d %12s %10s %12s %12.0f %10.0f %8d %16s %14s %12s %12s %12s %12s",
                                 products.getId(), products.getProductType(), products.getMarka().getName(),
-                                products.getProductName(), products.getUnitPrice(), products.getDiscountRate(),
+                                products.getProductName(), updatePrice, products.getDiscountRate(),
                                 products.getAmountOfStock(), products.getMemoryInformation(), products.getRam(),
                                 products.getScreenSize(), products.getStorage(), products.getColor(), products.getBatteryPower());
 
@@ -178,29 +175,14 @@ public class PatikaStore {
 
 
 
-    public Products getProductPhone() {
-        return productPhone;
+    public Products getProducts() {
+        return products;
     }
 
-    public void setProductPhone(Products productPhone) {
-        this.productPhone = productPhone;
+    public void setProducts(Products productPhone) {
+        this.products = productPhone;
     }
 
-    public Products getProductNotebook() {
-        return productNotebook;
-    }
-
-    public void setProductNotebook(Products productNotebook) {
-        this.productNotebook = productNotebook;
-    }
-
-    public Products getProductOther() {
-        return productOther;
-    }
-
-    public void setProductOther(Products productOther) {
-        this.productOther = productOther;
-    }
 
     public HashMap<String, String> getHashMap() {
         return hashMap;

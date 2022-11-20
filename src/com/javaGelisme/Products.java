@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Products {
     Scanner scan = new Scanner(System.in);
-    private int unitPrice;
-    private int DiscountRate;
+    private Double unitPrice;
+    private Double DiscountRate;
     private int amountOfStock;
     private String productName;
     private String productType;
@@ -22,7 +22,7 @@ public class Products {
     private  HashMap<String, String> hashMap = new HashMap<>();
 
 
-    public Products(int unitPrice, int discountRate, int amountOfStock, String productName,
+    public Products(Double unitPrice, Double discountRate, int amountOfStock, String productName,
                     String productType, int id, Marka marka, String memoryInformation, String color,
                     String screenSize, String batteryPower, String ram, String storage, HashMap hashMap) {
         this.unitPrice = unitPrice;
@@ -42,24 +42,19 @@ public class Products {
     }
 
 
-
-    public void printInfo(){
-        System.out.println("id : " + this.getId() + "\tName : " + this.getProductName() + "\tPrice : " + this.getUnitPrice());
-    }
-
-    public int getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public int getDiscountRate() {
+    public Double getDiscountRate() {
         return DiscountRate;
     }
 
-    public void setDiscountRate(int discountRate) {
+    public void setDiscountRate(Double discountRate) {
         DiscountRate = discountRate;
     }
 

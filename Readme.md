@@ -2,4 +2,4 @@
 
 
 ## UML class diagram
-<img src = "image/patika store diagram.png" alt="uml diagram">
+<img src = "image/store_diagram.png" alt="uml diagram">
